@@ -1,0 +1,25 @@
+# Ignore build output and toolchain files
+Output/
+*.o
+*.elf
+*.hex
+*.map
+*.bin
+*.exe
+*.log
+*.pyc
+*.swp
+.DS_Store
+Thumbs.db
+# Ignore user-specific files
+.vscode/
+*.user
+*.suo
+*.opensdf
+*.sdf
+*.idea/
+*.launch
+*.settings/
+# Ignore backup files
+*~
+*.bak
