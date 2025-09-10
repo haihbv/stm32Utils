@@ -1,4 +1,4 @@
-# variable
+# variables
 CC     = gcc
 DEPS   = intel_hex.h
 OBJ    = main.o intel_hex.o
@@ -11,22 +11,29 @@ INC := .
 # resources path
 SRC := main.c intel_hex.c
 
+# file HEX
+HEX ?= firmware.hex
+
 %.o: %.c $(DEPS)
 	$(CC) -I$(INC) -c $< -o $@
 
 $(TARGET): $(OBJ)
 	$(CC) -o $@ $^
 
-.PHONY: clean build
+.PHONY: clean build convert run read
 
-# command build .hex -> .bin
+# build exe
 build: $(TARGET)
 
-clean:
-	rm -f $(TARGET) $(OBJ) $(BIN)
+# convert .hex -> .bin
+convert: $(TARGET)
+	./$(TARGET) $(HEX) $(BIN)
+
 run: 
 	./$(TARGET)
 
-# read .bin
+clean:
+	rm -f $(TARGET) $(OBJ) $(BIN)
+	
 read:
 	hexdump -C $(BIN)
